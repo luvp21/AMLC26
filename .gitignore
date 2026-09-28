@@ -1,0 +1,27 @@
+# Ignore data files (large/generated) but keep scripts and docs under data/
+data/*
+!data/README.md
+!data/abo_proxy/
+data/abo_proxy/*
+!data/abo_proxy/*.py
+
+# Real competition dataset (~2GB of TSVs) — never commit, download only
+data_set/
+__MACOSX/
+
+# Submission outputs (matching_results.tsv/candidate_pairs.tsv can be
+# hundreds of MB at full test-set scale) — never commit, regenerate instead.
+output/
+
+runs/
+*.pt
+*.bin
+*.ckpt
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+.DS_Store
+*.egg-info/
+dist/

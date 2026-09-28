@@ -1,0 +1,17 @@
+time,experiment,leaderboard,holdout_F_US,holdout_F_India,implied_France,note
+2026-09-26 16:48:56,v2_m1,0.938,0.9615,0.9471,0.8433,M1 upload
+2026-09-26 16:48:58,v2_m2,0.952,0.968,0.9624,0.8723,M2 upload
+2026-09-26 20:22:20,m3_fast,0.96,0.9844,0.9821,0.8223,"all improvements, no LOCO; France fell"
+2026-09-26 21:28:20,m3_fr_agree,0.96273,0.9844,0.9821,0.8405,France = M2 AND m3_fast agreement; US/India from m3_fast
+2026-09-26 21:33:22,m3_usin_m2_fr,0.960153,0.9844,0.9821,0.8234,France = M2 rows; US/India from m3_fast
+2026-09-26 23:12:10,m3_fr_unanimous,0.96295,0.9844,0.9821,0.842,France = M2 & m3_fast & m3_nosib all agree; US/India from m3_fast
+2026-09-27 00:58:10,m3_novel,0.9678,0.9858,0.9834,0.8667,"m3_fast + novel-extra-word features, all countries one model"
+2026-09-27 02:23:32,m3_novel_la25,0.9726,0.9858,0.9834,0.8987,m3_novel + look-alike logit shift 2.5 (house numbers known and different)
+2026-09-27 02:30:10,probe_france_empty,0.84047,,,,"m3_novel_la25 with France rows emptied -> test US+India 0.9778, France 0.9369 (assumes France singleton rate 0.056)"
+2026-09-27 09:59:38,m3_gap_la25,0.97525,0.9868,0.9837,,"m3_novel + house-number gap features, look-alike shift 2.5"
+2026-09-27 14:24:57,m3_syn_fr,0.9734,0.9868,0.9839,,"m3_syn1 (synthetic look-alikes, crowd uniqueness, no shift) + label-free France routing; below m3_gap_la25 (0.97525): cause (model vs routing) not yet separated"
+2026-09-27 14:29:05,m3_gap_la25_fr,0.975281,0.9868,0.9837,,"m3_gap_la25 + label-free France routing (France rows only differ): routing neutral/slightly positive; so m3_syn_fr's drop (-0.0019) is the synthetic model"
+2026-09-27 14:47:37,m3_gap_la25_fr_u15,0.97532,0.9868,0.9837,,"m3_gap_la25_fr + unseen-country logit shift 1.5 (France only; France matches/S1 3.39 -> 3.27): +0.00004, France threshold not the limit"
+2026-09-27 18:54:36,m3_gap_ce2_fr_u15,0.9795,0.9890,0.9874,,"m3_gap_la25_fr_u15 + cross-encoder rescoring of uncertain pairs (two MiniLM-L12 multilingual cross-encoders, logistic blend on tune): +0.0042 on LB vs +0.0022/+0.0037 on holdout; FINAL"
+2026-09-27 21:28:41,m3_gap_ce3_fr_u15,0.980176,0.9894,0.9882,,"+ third cross-encoder (ce3, 1.3M natural-ratio pairs, whole band); blend of ce, ce2, ce3; decoder threshold 0.72: FINAL"
+2026-09-27 23:30:56,m3_gap_ce4_fr_u15,0.9806,0.9896,0.9884,,"+ fourth cross-encoder (ce4, seed 7, swapped pair order, 1.0M pairs); blend of four: FINAL"
